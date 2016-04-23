@@ -21,8 +21,22 @@ public class ColorChooser extends JDialog {
 
 	private static final long serialVersionUID = 1L;
 
-	JColorChooser colorChooser;
-	Color color;
+	/**
+	 * Atributo de un JColorChooser
+	 */
+	protected JColorChooser colorChooser;
+	
+	/**
+	 * Atributo de Color
+	 */
+	protected Color color;
+	
+	/**
+	 * Metodo que genera los botones para cambiar los colores de los jugadores; muestra la paleta de colores
+	 * @param parent es un JFrame para crear la paleta de colores
+	 * @param title String para nombrar el panel
+	 * @param initColor los colores que muestra para elegir
+	 */
 
 	public ColorChooser(JFrame parent, String title, Color initColor) {
 		super(parent, title);
@@ -60,15 +74,19 @@ public class ColorChooser extends JDialog {
 		pack();
 		setVisible(true);
 	}
-
+	
+	/**
+	 * Funcion que cierra los dialogos
+	 */
 	private void closeDialog() {
 		setVisible(false);
 		dispose();
 	}
 
-	// override the createRootPane inherited by the JDialog, to create the
-	// rootPane.
-	// create functionality to close the window when "Escape" button is pressed
+	/**
+	 * Override the createRootPane inherited by the JDialog, to create the rootPane.
+	 * Create functionality to close the window when "Escape" button is pressed
+	 */	
 	public JRootPane createRootPane() {
 		JRootPane rootPane = new JRootPane();
 		KeyStroke stroke = KeyStroke.getKeyStroke("ESCAPE");
@@ -85,6 +103,10 @@ public class ColorChooser extends JDialog {
 		return rootPane;
 	}
 
+	/**
+	 * Metodo del Color que indica el color
+	 * @return el color
+	 */
 	public Color getColor() {
 		return color;
 	}

@@ -13,10 +13,13 @@ import es.ucm.fdi.tp.basecode.bgame.views.GenericConsoleView;
 public class AdvancedTTTFactoryExt extends AdvancedTTTFactory {
 
 	/**
-	 * 
+	 * serialVersionUID
 	 */
 	private static final long serialVersionUID = 1L;
 
+	/**
+	 * Metodo constructor por defecto sin parametros de entrada que llama al super()
+	 */
 	public AdvancedTTTFactoryExt() {
 		super();
 	}

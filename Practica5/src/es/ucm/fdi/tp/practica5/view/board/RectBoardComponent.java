@@ -20,23 +20,44 @@ import es.ucm.fdi.tp.basecode.bgame.model.Game.State;
 public abstract class RectBoardComponent extends JComponent implements GameObserver  {
 	
 	/**
-	 * 
+	 * serialVersionUID
 	 */
 	private static final long serialVersionUID = 1L;
 	
+	/**
+	 * Atributo de tablero
+	 */
 	protected Board board;
 
+	/**
+	 * Atributo HasMap de pieza y color, color de las piezas
+	 */
 	protected HashMap<Piece,Color> colorPieces;
 
-	
+	/**
+	 * Atributo entero que indica el alto de la casilla
+	 */
 	protected int _CELL_HEIGHT = 100;
+	
+	/**
+	 * Atributo entero que indica el ancho de la casilla
+	 */
 	protected int _CELL_WIDTH = 100;
 	
+	/**
+	 * Parametros enumerados de los tipos de objetos en el tablero: piezas, casillas y obstaculos
+	 * @author Lidia
+	 * 
+	 */
 	public enum Tipes{
 		PIECE, CELL, OBSTACLE
 	}
 	
-	
+	/**
+	 * Metodo constructor con parametros de entrada del observable y el tablero
+	 * @param game parametro del observable del juego
+	 * @param board parametro del tablero
+	 */
 	public RectBoardComponent(final Observable<GameObserver> game, Board board){
 		this.board = board;
 		initGUI();
@@ -49,10 +70,10 @@ public abstract class RectBoardComponent extends JComponent implements GameObser
 		});
 	}
 	
-	
-	
-	protected void initGUI() {
-		
+	/**
+	 * Metodo que procedimenta los clicks del mouse
+	 */	
+	protected void initGUI() {		
 		
 		addMouseListener(new MouseListener() {
 
@@ -89,19 +110,41 @@ public abstract class RectBoardComponent extends JComponent implements GameObser
 		repaint();
 	}
 	
-	
-	
+	/**
+	 * Metodo abstracto que indica la fila y columna a la que clicka el mouse	
+	 * @param row entero positivo de fila
+	 * @param col entero positivo de columna
+	 * @param clickCount contador de clicks del mouse
+	 * @param button indicador del boton
+	 */
 	protected abstract void mouseClicked(int row, int col, int clickCount, int button);
+	
+	/**
+	 * Metodo abstracto que pinta las piezas 
+	 * @param piece que se le pasa del jugador 
+	 * @return la pieza con el color
+	 */
 	protected abstract Color getPieceColor(Piece piece);
+	
+	/**
+	 * Metodo abstracto que indica el tipo de pieza que se le pasa
+	 * @param p pieza que se le pasa como parametro
+	 * @return el tipo de pieza 
+	 */
 	protected abstract Tipes getPieceTipe(Piece p);
 
-
-
+	/**
+	 * Fuincion que dibuja los objetos
+	 */
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		fillBoard(g);
 	}
 
+	/**
+	 * Coloca en el tablero el tipo de pieza que se le pasa
+	 * @param g parametro grafico que dibuja los objetos
+	 */
 	private void fillBoard(Graphics g) {
 		int x, y;
 		this._CELL_WIDTH  = this.getWidth()  / board.getCols();
@@ -132,12 +175,24 @@ public abstract class RectBoardComponent extends JComponent implements GameObser
 
 	}
 	
+	/**
+	 * Metodo que dibuja y pinta las casillas
+	 * @param x entero de indica el alto de la casilla
+	 * @param y entero de indica el ancho de la casilla
+	 * @param g parametro grafico que dibuja los objetos
+	 */
 	protected void drawCell(int x, int y, Graphics g) {
 		g.setColor(Color.DARK_GRAY);
 		g.fillRect(x + 2, y + 2, _CELL_WIDTH - 4, _CELL_HEIGHT - 4);
 		
 	}
 	
+	/**
+	 * Metodo que dibuja y pinta las piezas
+	 * @param x entero de indica el alto de la casilla
+	 * @param y entero de indica el ancho de la casilla
+	 * @param g parametro grafico que dibuja los objetos
+	 */
 	protected void drawPiece(int x, int y, Graphics g){
 		g.setPaintMode();
 		g.fillOval(x + 4, y + 4, _CELL_WIDTH - 8, _CELL_HEIGHT - 8);
@@ -145,17 +200,17 @@ public abstract class RectBoardComponent extends JComponent implements GameObser
 		g.drawOval(x + 4, y + 4, _CELL_WIDTH - 8, _CELL_HEIGHT - 8);
 	}
 	
+	/**
+	 * Metodo que dibuja y pinta los obstaculos
+	 * @param x entero de indica el alto de la casilla
+	 * @param y entero de indica el ancho de la casilla
+	 * @param g parametro grafico que dibuja los objetos
+	 */
 	protected void drawObtacle(int x, int y, Graphics g){
 		g.setColor(Color.WHITE);
 		g.fillRect(x + 4, y + 4, _CELL_WIDTH - 8, _CELL_HEIGHT - 8);
 	}
 
-	
-	
-	
-	
-	
-	
 	@Override
 	public void onGameStart(Board board, String gameDesc, List<Piece> pieces, Piece turn) {
 		this.board = board;

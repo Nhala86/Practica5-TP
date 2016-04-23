@@ -13,13 +13,18 @@ import es.ucm.fdi.tp.practica5.view.board.RectBoardComponent;
 public abstract class RectBoardSwingView extends SwingView{
 
 	/**
-	 * 
+	 * serialVersionUID
 	 */
 	private static final long serialVersionUID = 1L;
-
-	//private FiniteRectBoardComponent boardComponent;
-	//private BoardComponent boardComponent;
 	
+	/**
+	 * 
+	 * @param game
+	 * @param c
+	 * @param localPiece
+	 * @param randPlayer
+	 * @param aiPlayer
+	 */
 	public RectBoardSwingView(Observable<GameObserver> game, Controller c, Piece localPiece, Player randPlayer, Player aiPlayer) {
 		super(game, c, localPiece, randPlayer, aiPlayer);
 	}
@@ -31,32 +36,32 @@ public abstract class RectBoardSwingView extends SwingView{
 		//this.boardComponent = new FiniteRectBoardComponent(ctrl, game, this.getPieceColors(), this.getBoard());
 		boardComponent = new RectBoardComponent(game, board){
 
+		/**
+		 * Funcion que llama al handelMouseClick pasandole los atributos de fila, columna, contador de click y boton del mouse		
+		 */
+		protected void mouseClicked(int row, int col, int clickcounter, int mouseButton){
+			handelMouseClick(row, col, clickcounter, mouseButton);
+		}
 			
-	protected void mouseClicked(int row, int col, int clickcounter, int mouseButton){
-		handelMouseClick(row, col, clickcounter, mouseButton);
-	}
-
+		@Override
+		protected Color getPieceColor (Piece piece){
+			return RectBoardSwingView.this.getPieceColor(piece);
+		}
 	
-	@Override
-	protected Color getPieceColor (Piece piece){
-		return RectBoardSwingView.this.getPieceColor(piece);
-	}
-
-	@Override
-	protected Tipes getPieceTipe(Piece piece) {
-		Tipes PieceTipe = null;
-		if(getPieces().contains(piece))
-			PieceTipe = Tipes.PIECE;
-		else if(piece != null && piece.getId().equals("+"))
-			PieceTipe = Tipes.OBSTACLE;
-		else
-			PieceTipe = Tipes.CELL;
-
-		return PieceTipe;
-	}
+		@Override
+		protected Tipes getPieceTipe(Piece piece) {
+			Tipes PieceTipe = null;
+			if(getPieces().contains(piece))
+				PieceTipe = Tipes.PIECE;
+			else if(piece != null && piece.getId().equals("+"))
+				PieceTipe = Tipes.OBSTACLE;
+			else
+				PieceTipe = Tipes.CELL;
 	
-	};
-	setBoardArea(boardComponent);
+			return PieceTipe;
+			}		
+		};
+		setBoardArea(boardComponent);
 	}
 		
 	@Override
@@ -76,6 +81,12 @@ public abstract class RectBoardSwingView extends SwingView{
 		this.boardComponent.repaint();
 	}
 		
-	
+	/**
+	 * Funcion abstracta del handleMouseClick con parametros de entrada
+	 * @param row entero positivo de la fila
+	 * @param col entero positivo de la columna
+	 * @param clickcounter contador de click del mouse
+	 * @param mouseButton indicador del boton del raton
+	 */
 	protected abstract void handelMouseClick(int row, int col, int clickcounter, int mouseButton);
 }

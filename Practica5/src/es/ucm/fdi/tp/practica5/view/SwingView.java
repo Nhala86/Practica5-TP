@@ -7,6 +7,7 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.HashMap;
@@ -45,7 +46,7 @@ import es.ucm.fdi.tp.basecode.bgame.model.Observable;
 public abstract class SwingView extends JFrame implements GameObserver{
 	
 	/**
-	 * 
+	 * serialVersionUID
 	 */
 	private static final long serialVersionUID = 1L;
 
@@ -94,23 +95,38 @@ public abstract class SwingView extends JFrame implements GameObserver{
 	 */
 	private Map<Piece,Color> pieceColors;
 	
-	
+	/**
+	 * Metodo que mapea las piezas y el color de estas
+	 * @return la pieza con color
+	 */
 	public Map<Piece,Color> getPieceColors(){
 		return this.pieceColors;
 	}
 	
-	protected Color getPieceColor(Piece p) {
-		//return (pieceColors.get(p) == null ? (Color) Utils.colorsGenerator() : pieceColors.get(p));
+	/**
+	 * Metodo del Color que devuelve el color de las piezas
+	 * @param p atributo de la pieza
+	 * @return la pieza y el color
+	 */
+	protected Color getPieceColor(Piece p) {		
 		return pieceColors.get(p);
 	}
 	
-	
+	/**
+	 * Metodo del Color que setea el color de las piezas
+	 * @param p atributo de la pieza
+	 * @param c atributo del color
+	 * @return la pieza y el color
+	 */
 	protected Color setPieceColor(Piece p, Color c) {
 		return pieceColors.put(p, c);
 	}
 	
 
 //------------------------------LISTA DE PIEZAS-------------------------------//
+	/**
+	 * Lista de piezas
+	 */
 	private List<Piece>pieces;
 	
 	/**
@@ -122,6 +138,9 @@ public abstract class SwingView extends JFrame implements GameObserver{
 	}
 	
 //------------------------------PIEZA DE SWINGVIEW-------------------------------//	
+	/**
+	 * Parametro de la Piece del turno
+	 */
 	private Piece turn;
 	/**
 	 * <b>getTurn<b>
@@ -132,6 +151,9 @@ public abstract class SwingView extends JFrame implements GameObserver{
 	}
 
 //------------------------------REFERENCIA DE TABLERO-------------------------------//
+	/**
+	 * Parametro de Board
+	 */
 	protected Board board;
 	/**
 	 * <b>getBoard<b>
@@ -148,7 +170,7 @@ public abstract class SwingView extends JFrame implements GameObserver{
 	 */
 	private JPanel boardPanel;
 	/**
-	 * 
+	 * Parametro de RectBoardComponent
 	 */
 	protected RectBoardComponent boardComponent;
 	/**
@@ -161,37 +183,35 @@ public abstract class SwingView extends JFrame implements GameObserver{
 	
 //------------------------------ATRIBUTOS DE SWING VIEW-------------------------------//
 	/**
-	 * 
+	 * Prametro observable del juego
 	 */
 	protected Observable<GameObserver> game;
 	
 	/**
-	 * 
+	 * Parametro del Controlador
 	 */
 	protected Controller controller;
 	
 	/**
-	 * 
+	 * Parametro de la pieza
 	 */
 	private Piece localPiece;
 	
 	/**
-	 * 
+	 * Parametro del jugador Random
 	 */
 	private Player randPlayer;
 	
 	/**
-	 * 
+	 * Parametro del jugador IA
 	 */
 	private Player aiPlayer;
 	
 	/**
-	 * 
+	 * Parametros boleanos de nuevo juego, del juego y del movimiento
 	 */
 	protected boolean newGame, inPlay, inMove;
-	
-	
-	
+		
 	/**
 	 * <b>SwingView</b>
 	 * <p> Constructor for the abstract father SwingView</p>
@@ -230,12 +250,9 @@ public abstract class SwingView extends JFrame implements GameObserver{
 	private void initGUI() {
 
 		this.setLayout(new BorderLayout(5, 5));	
-		createPanels();	
-		
-		//initBoardGui(this.controller, this.game);
-	
+		createPanels();		
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setMinimumSize(new Dimension(1000,600));
+		this.setMinimumSize(new Dimension(800,600));
 		this.setVisible(true);
 		
 	}
@@ -255,9 +272,10 @@ public abstract class SwingView extends JFrame implements GameObserver{
 	 */
 	final private void createPanels(){
 		
-		this.boardPanel = new JPanel(new BorderLayout(5,5));
-		this.ControllerPanel = new JPanel(new BorderLayout(5,5));
+		this.boardPanel = new JPanel(new BorderLayout(5, 5));
+		this.ControllerPanel = new JPanel(new BorderLayout(5, 5));
 		this.ControllerPanel.setLayout(new BoxLayout(ControllerPanel, BoxLayout.Y_AXIS));
+		this.ControllerPanel.setPreferredSize(new Dimension(300,600));
 		gameMessagesComponent();
 		playerInformationComponent();
 		selectColorComponent ();
@@ -305,10 +323,10 @@ public abstract class SwingView extends JFrame implements GameObserver{
 	 */
 	private void gameMessagesComponent() {
 		this.gameMessagesPanel = createPanelLabeled("Player Information", Color.LIGHT_GRAY);
-		this.gameMessages = new JTextArea(45, 40);
-		this.gameMessages.setEditable(false);		
-		this.gameMessagesPanel.add(new JScrollPane(this.gameMessages), BorderLayout.CENTER);
-		
+		this.gameMessages = new JTextArea(48, 43);
+		this.gameMessages.setEditable(false);
+		this.gameMessages.setFont(new Font("SansSerif", Font.BOLD, 11));
+		this.gameMessagesPanel.add(new JScrollPane(this.gameMessages), BorderLayout.CENTER);		
 		this.ControllerPanel.add(this.gameMessagesPanel);
 	}
 	
@@ -320,8 +338,7 @@ public abstract class SwingView extends JFrame implements GameObserver{
 	 * @param message to show in the tex area
 	 */
 	final protected void addMessageToTextArea(String message) {
-		this.gameMessages.append("* " + message + System.getProperty("line.separator"));
-		
+		this.gameMessages.append("* " + message + System.getProperty("line.separator"));		
 	}
 	
 //-------------------------COMPONENTE DE INFORMACION DE JUGADORES--------------------------//	
@@ -342,10 +359,12 @@ public abstract class SwingView extends JFrame implements GameObserver{
 	 * <b>playerInformationComponent</b>
 	 * <p> Component creation process for the payers information </p>
 	 * <p> Procedimiento de creación del componente de informacion de jugadores</p> 
-	 */
+	 */	
 	private void playerInformationComponent(){
-		this.playerInformationPanel = createPanelLabeled("Player Information", Color.LIGHT_GRAY);
+		this.playerInformationPanel = createPanelLabeled("Player Information", Color.LIGHT_GRAY);		
+		playerInformationPanel.setBackground(Color.LIGHT_GRAY);		
 		this.infoTable = new PlayerInformationTable();
+		
 		@SuppressWarnings("serial")
 		JTable infoPanel = new JTable(this.infoTable){
 			@Override
@@ -356,11 +375,8 @@ public abstract class SwingView extends JFrame implements GameObserver{
 			}
 		};
 		infoPanel.setEnabled(false);
-		infoPanel.setFillsViewportHeight(true);
-		//infoPanel.setPreferredSize(new Dimension(100,100));
-		JScrollPane scroll = new JScrollPane(infoPanel);
-		//this.playerInformationPanel.setPreferredSize(new Dimension(100,100));
-		
+		infoPanel.setFillsViewportHeight(true);		
+		JScrollPane scroll = new JScrollPane(infoPanel);		
 		this.ControllerPanel.add(this.playerInformationPanel.add(scroll));	
 	}
 
@@ -399,7 +415,7 @@ public abstract class SwingView extends JFrame implements GameObserver{
 					ColorChooser choosedColor = new ColorChooser(new JFrame(), 
 							"Select Piece Color", pieceColors.get(p));
 					
-					if (choosedColor.getColor() != null) {
+					if (!choosedColor.getColor().equals(null)) {
 						pieceColors.put(p, choosedColor.getColor());
 						repaint();
 					}
@@ -417,8 +433,7 @@ public abstract class SwingView extends JFrame implements GameObserver{
 	 * <p>Panel contenedor del los desplegables y boton de cambio de modos </p>
 	 */
 	private JPanel selectModePlayerPanel;
-	
-	
+		
 	/**
 	 * <b>modeCombo</b>
 	 * <p>desplegable con el contenido de piezas del juego para el cambio de modos</p>
@@ -443,18 +458,18 @@ public abstract class SwingView extends JFrame implements GameObserver{
 		this.modeCombo = new JComboBox<PlayerMode>();
 		this.modeCombo.addItem(PlayerMode.MANUAL);
 		
-		if (randPlayer != null) {
+		if (!randPlayer.equals(null)) {
 			modeCombo.addItem(PlayerMode.RANDOM);
 		}
 		
-		if (aiPlayer != null) {
+		if (!aiPlayer.equals(null)) {
 			modeCombo.addItem(PlayerMode.AI);
 		}
 		this.pieceModeCombo = new JComboBox<Piece>(new DefaultComboBoxModel<Piece>() {
 			@Override
 			public void setSelectedItem(Object o) {
 				super.setSelectedItem(o);
-				if (playersModes.get(o) != PlayerMode.MANUAL) {
+				if (!playersModes.get(o).equals(PlayerMode.MANUAL)) {
 					modeCombo.setSelectedItem(PlayerMode.AI);
 				} else {
 					modeCombo.setSelectedItem(PlayerMode.MANUAL);
@@ -498,20 +513,19 @@ public abstract class SwingView extends JFrame implements GameObserver{
 	 * <p> Component creation process for the automatic movements </p>
 	 * <p> Procedimiento de creación del componente de movimientos automaticos</p> 
 	 */
-	private void automaticMoveComponent(){
+	private void automaticMoveComponent(){		
 		
-		//this.automaticMovePanel = createPanelLabeled("Automatic Move", Color.LIGHT_GRAY);
 		this.automaticMovePanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
 		automaticMovePanel.setBorder(BorderFactory.createTitledBorder("Player Modes"));
 		automaticMovePanel.setBackground(Color.LIGHT_GRAY);
 		
-		JButton random = new JButton("Random");
+		JButton random = new JButton("Random");		
 			random.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					executeControllerMove(randPlayer);
 				}
-			});		
+			});			
 		this.automaticMovePanel.add(random);
 
 		JButton intelligent = new JButton("Intelligent");
@@ -541,9 +555,7 @@ public abstract class SwingView extends JFrame implements GameObserver{
 	 * <p> Component creation process for the automatic movements </p>
 	 * <p> Procedimiento de creación del componente de movimientos automaticos</p> 
 	 */
-	private void exitComponent(){
-		
-		//this.exitPanel = createPanelLabeled("Finish Game", Color.LIGHT_GRAY);
+	private void exitComponent(){		
 		this.exitPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
 		exitPanel.setBorder(BorderFactory.createTitledBorder("Player Modes"));
 		exitPanel.setBackground(Color.LIGHT_GRAY);
@@ -568,8 +580,7 @@ public abstract class SwingView extends JFrame implements GameObserver{
 				}
 			});
 		
-		this.exitPanel.add(quit);
-		
+		this.exitPanel.add(quit);		
 		
 		JButton restartButton = new JButton("Restart");
 		
@@ -593,14 +604,11 @@ public abstract class SwingView extends JFrame implements GameObserver{
 				}
 			});
 			
-		this.exitPanel.add(restartButton);
-		
-		this.ControllerPanel.add(this.exitPanel);
-		
+		this.exitPanel.add(restartButton);		
+		this.ControllerPanel.add(this.exitPanel);		
 	}
 	
-//--------------------------METODOS DEL MOVIMIENTO AUTOMATICO-------------------------------//
-	
+//--------------------------METODOS DEL MOVIMIENTO AUTOMATICO-------------------------------//	
 	
 	/**
 	 * <b>decideMakeManualMove</b>
@@ -608,7 +616,7 @@ public abstract class SwingView extends JFrame implements GameObserver{
 	 * <p> Procedimiento de ejecucion de un movimiento manual</p> 
 	 */
 	final protected void caseMakeManualMove(Player manualPlayer) {
-		if(this.inMove || !this.inPlay)
+		if(this.inMove && !this.inPlay)
 			return;
 		if(this.localPiece != null && !this.localPiece.equals(turn))
 			return;
@@ -659,9 +667,7 @@ public abstract class SwingView extends JFrame implements GameObserver{
 			}
 		});
 		this.setEnabled(true);
-	}
-	
-	
+	}	
 
 
 //------------------------------EVENTOS DEL OBSERVADOR-------------------------------//		
@@ -713,13 +719,11 @@ public abstract class SwingView extends JFrame implements GameObserver{
 	public void onError(String msg) {
 		JOptionPane.showMessageDialog(new JFrame(), msg, "Error",
 				JOptionPane.ERROR_MESSAGE);
-	}
-	
-	
+	}	
 	
 //-------------------------HANDLERS DE LOS EVENTOS OBSERVADOR-------------------------------//	
 	/**
-	 * 
+	 * Funcion que condiciona del comienzo del juego, pasandole parametros
 	 * @param board of the model
 	 * @param gameDesc of the model
 	 * @param pieces of the model
@@ -757,23 +761,20 @@ public abstract class SwingView extends JFrame implements GameObserver{
 				pieceModeCombo.addItem(localPiece);
 			}
 			
-		}
-		
-		this.addMessageToTextArea(" --  --   GAME START  --  -- *");
-		
+		}		
+		this.addMessageToTextArea(" --  --   GAME START  --  -- *");		
 		handleChangeTurn(board, turn);
 	}	
 	
 	/**
-	 * 
-	 * @param board
-	 * @param state
-	 * @param winner
+	 * Funcion que condiciona el final del juego, pasandole parametros
+	 * @param board parametro del tablero
+	 * @param state parametro del estado del jugador
+	 * @param winner la pieza ganadora 
 	 */
 	private void handleGameOver(Board board, State state, Piece winner) {
 		this.infoTable.refresh();
 		this.board = board;
-		
 		
 		this.addMessageToTextArea(" GAME OVER *");
 		
@@ -794,6 +795,7 @@ public abstract class SwingView extends JFrame implements GameObserver{
 			break;
 			
 		}
+		
 		this.setEnabled(false);
 		
 		int n = JOptionPane.showOptionDialog(new JFrame(), "Want another play?", "New Game",
@@ -812,14 +814,13 @@ public abstract class SwingView extends JFrame implements GameObserver{
 			controller.stop();
 			dispose();
 			System.exit(0);
-			}
-		
+			}			
 	}	
 
 	/**
-	 * 
-	 * @param board
-	 * @param turn
+	 * Funcion que cambia el turno de los jugadores pasandole por parametros el tablero y la pieza de ese turno
+	 * @param board parametro del tablero
+	 * @param turn parametro de la pieza de ese turno
 	 */
 	private void handleChangeTurn(Board board, Piece turn) {
 		this.infoTable.refresh();
@@ -833,34 +834,30 @@ public abstract class SwingView extends JFrame implements GameObserver{
 			this.setEnabled(false);
 		
 		caseMakeAutomaticMove();
-	}	
-	
+	}		
 	
 //-----------------------METODOS ABSTRACTOS DE CLASE--------------------------//
 	/**
-	 * 
-	 * @param ctrl
-	 * @param game
+	 * Funcion abstracta que inicia el tablero con parametros
+	 * @param ctrl parametro del controlador
+	 * @param game observable del juego
 	 */
 	protected abstract void initBoardGui(Controller ctrl, Observable<GameObserver> game);
 	
 	/**
-	 * 
+	 * Función abstracta que activa el tablero el tablero
 	 */
 	protected abstract void activateBoard();
 	
 	/**
-	 * 
+	 * Función abstracta que desactiva el tablero el tablero
 	 */
 	protected abstract void deActivateBoard();
 	
 	/**
-	 * 
+	 * Función abstracta que dibuja el tablero
 	 */
-	protected abstract void redrawBoard();
-	
-	
-	
+	protected abstract void redrawBoard();	
 
 //-----------------------MODELO DE TABLA PARA LA INFORMACION DE JUGADORES--------------------------//	
 	
@@ -869,24 +866,38 @@ public abstract class SwingView extends JFrame implements GameObserver{
 	class PlayerInformationTable extends DefaultTableModel {
 		
 		String[] columnNames;
-		
+	/**
+	 * 	Metodo que crea el panel de informacion sobre los jugadores
+	 */
 	public PlayerInformationTable (){
 		
 		this.columnNames = new String[] {"Player", "Mode", "#Pieces"};
 		}
-		
+	
+		/**
+		 * Metodo String que nombre las columnas del panel
+		 */
 		public String getColumnName(int col) {
 			return columnNames[col];
 		}
 		
+		/**
+		 * Metodo contador de columnas
+		 */
 		public int getColumnCount() {
 			return columnNames.length;
 		}
 		
+		/**
+		 * Metodo contador de filas
+		 */
 		public int getRowCount() {
 			return (pieces == null ? 0: pieces.size());
 		}
 
+		/**
+		 * Metodo que genera el nombre de los jugadores, el modo en el que juega y cuantas piezas tiene en el tablero
+		 */
 		public Object getValueAt(int row, int col) {
 			Object object = null;
 			if(pieces != null){

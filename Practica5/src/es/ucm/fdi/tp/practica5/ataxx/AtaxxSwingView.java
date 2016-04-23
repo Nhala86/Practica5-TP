@@ -10,7 +10,7 @@ import es.ucm.fdi.tp.practica5.view.sound.MakeSound;
 
 public class AtaxxSwingView extends RectBoardSwingView {
 	/**
-	 * 
+	 * serialVersionUID
 	 */
 	private static final long serialVersionUID = 1L;
 	
@@ -45,14 +45,26 @@ public class AtaxxSwingView extends RectBoardSwingView {
 	 * Columna en la que se coloca la ficha devuelta por
 	 * {@link GameMove#getPiece()}.
 	 */
-	private int destinyCol;
-	
+	private int destinyCol;	
 
-	
+	/**
+	 * Parametro de jugador de la SwingPlayer
+	 */
 	private AtaxxSwingPlayer player;
 	
+	/**
+	 * Parametro booleano del segundo click del mouse
+	 */
 	private boolean secondClick;
 
+	/**
+	 * Metodo constructor al que se le pasan los parametos de juego, controlador, piezas y jugadores
+	 * @param game parametro observable del juego
+	 * @param c parametro del controlador
+	 * @param localPiece parametro de las piezas con las que se inicia el juego
+	 * @param randPlayer parametro de jugador random
+	 * @param aiPlayer parametro de jugador IA
+	 */
 	public AtaxxSwingView(Observable<GameObserver> game, Controller c, Piece localPiece, Player randPlayer, Player aiPlayer) {
 		super(game, c, localPiece, randPlayer, aiPlayer);
 		MakeSound.RunPlaySound("sound/ataxxopen.wav");

@@ -10,16 +10,26 @@ import es.ucm.fdi.tp.practica5.view.RectBoardSwingView;
 public class ConnectnSwingview extends RectBoardSwingView {
 
 	/**
-	 * 
+	 * serialVersionUID 
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	ConnectnSwingPlayer player;
+	/**
+	 * Parametro de jugador de la SwingPlayer
+	 */
+	private ConnectnSwingPlayer player;
 
-	public ConnectnSwingview(Observable<GameObserver> game, Controller c, Piece localPiece, Player randPlayer,
-			Player aiPlayer) {
+	/**
+	 * Metodo constructor al que se le pasan los parametos de juego, controlador, piezas y jugadores
+	 * @param game parametro observable del juego
+	 * @param c parametro del controlador
+	 * @param localPiece localPiece parametro de las piezas con las que se inicia el juego
+	 * @param randPlayer parametro de jugador random
+	 * @param aiPlayer parametro de jugador IA
+	 */
+	public ConnectnSwingview(Observable<GameObserver> game, Controller c, Piece localPiece, Player randPlayer, Player aiPlayer) {
 		super(game, c, localPiece, randPlayer, aiPlayer);
-		// TODO Auto-generated constructor stub
+		
 	}
 	
 	@Override

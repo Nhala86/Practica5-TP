@@ -11,7 +11,7 @@ import es.ucm.fdi.tp.practica5.view.sound.MakeSound;
 public class AdvancedTTTSwingView extends RectBoardSwingView {
 
 	/**
-	 * 
+	 * serialVersionUID
 	 */
 	private static final long serialVersionUID = 1L;
 

@@ -10,13 +10,23 @@ import es.ucm.fdi.tp.practica5.view.RectBoardSwingView;
 public class TicTacToeSwingView extends RectBoardSwingView {
 
 	/**
-	 * 
+	 * serialVersionUID
 	 */
 	private static final long serialVersionUID = 1L;
 
-	TicTacToeSwingPlayer player;
+	/**
+	 * Parametro de jugador de la SwingPlayer
+	 */
+	private TicTacToeSwingPlayer player;
 	
-	
+	/**
+	 * Metodo constructor al que se le pasan los parametos de juego, controlador, piezas y jugadores
+	 * @param game parametro observable del juego
+	 * @param c parametro del controlador
+	 * @param localPiece parametro de las piezas con las que se inicia el juego
+	 * @param randPlayer parametro de jugador random
+	 * @param aiPlayer parametro de jugador IA
+	 */
 	public TicTacToeSwingView(Observable<GameObserver> game, Controller c, Piece localPiece, Player randPlayer,
 			Player aiPlayer) {
 		super(game, c, localPiece, randPlayer, aiPlayer);
