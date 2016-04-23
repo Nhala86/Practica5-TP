@@ -37,12 +37,12 @@ public abstract class RectBoardComponent extends JComponent implements GameObser
 	/**
 	 * Atributo entero que indica el alto de la casilla
 	 */
-	protected int _CELL_HEIGHT = 100;
+	protected int _CELL_HEIGHT = 500;
 	
 	/**
 	 * Atributo entero que indica el ancho de la casilla
 	 */
-	protected int _CELL_WIDTH = 100;
+	protected int _CELL_WIDTH = 500;
 	
 	/**
 	 * Parametros enumerados de los tipos de objetos en el tablero: piezas, casillas y obstaculos
@@ -101,7 +101,7 @@ public abstract class RectBoardComponent extends JComponent implements GameObser
 			public void mouseClicked(MouseEvent e) {
 				System.out.println(
 						"Mouse Button " + e.getButton() + " Clicked at " + "(" + e.getX() + "," + e.getY() + ")");
-				int row = (e.getX()/_CELL_HEIGHT);
+				int row = (e.getX()/_CELL_WIDTH);
 				int col = (e.getY()/_CELL_HEIGHT);
 				RectBoardComponent.this.mouseClicked(row, col, e.getClickCount(), e.getButton());
 			}
@@ -207,7 +207,7 @@ public abstract class RectBoardComponent extends JComponent implements GameObser
 	 * @param g parametro grafico que dibuja los objetos
 	 */
 	protected void drawObtacle(int x, int y, Graphics g){
-		g.setColor(Color.WHITE);
+		g.setColor(Color.white);
 		g.fillRect(x + 4, y + 4, _CELL_WIDTH - 8, _CELL_HEIGHT - 8);
 	}
 

@@ -57,7 +57,7 @@ public class AtaxxRules implements GameRules{
 	private Piece getObstPiece(List<Piece> pieces) {
 		int i = 0;
 		while ( true ) {
-		Piece piece = new Piece("*#"+i);
+		Piece piece = new Piece("*");
 		if ( !pieces.contains(piece) ) 
 			/*
 			 * para obstáculos no puedes usar simplemente e"*", hay que comprobar

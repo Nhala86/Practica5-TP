@@ -3,7 +3,6 @@ package es.ucm.fdi.tp.practica5.view;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-//import javafx.scene.paint.Color;									//mola bastante mas....pero funciona igual?
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -379,7 +378,6 @@ public abstract class SwingView extends JFrame implements GameObserver{
 		JScrollPane scroll = new JScrollPane(infoPanel);		
 		this.ControllerPanel.add(this.playerInformationPanel.add(scroll));	
 	}
-
 	
 //-------------------------COMPONENTE DE CAMBIO DE COLORES-------------------------------//	
 	/**
@@ -616,7 +614,7 @@ public abstract class SwingView extends JFrame implements GameObserver{
 	 * <p> Procedimiento de ejecucion de un movimiento manual</p> 
 	 */
 	final protected void caseMakeManualMove(Player manualPlayer) {
-		if(this.inMove && !this.inPlay)
+		if(this.inMove || !this.inPlay)
 			return;
 		if(this.localPiece != null && !this.localPiece.equals(turn))
 			return;
@@ -693,7 +691,7 @@ public abstract class SwingView extends JFrame implements GameObserver{
 	
 	@Override
 	public void onMoveStart(Board board, Piece turn) {
-		if(this.turn == null)
+		if(this.turn == turn)
 			this.inMove = true;
 	}
 
@@ -735,7 +733,7 @@ public abstract class SwingView extends JFrame implements GameObserver{
 		this.pieces = pieces;
 		this.turn = turn;
 		this.inPlay = true;
-		this.inMove = true;
+		this.newGame = true;
 
 		initBoardGui(this.controller, this.game);
 		//GENERAR COLORES PARA LAS PIEZAS
@@ -757,11 +755,13 @@ public abstract class SwingView extends JFrame implements GameObserver{
 		
 		else{	//MULTIVISTA
 			if(this.playersModes.get(this.localPiece) == null){
+				for(Piece localPiece : pieces)
 				this.playersModes.put(localPiece, PlayerMode.MANUAL);
 				pieceModeCombo.addItem(localPiece);
 			}
 			
-		}		
+		}	
+		this.gameMessages.setText("");
 		this.addMessageToTextArea(" --  --   GAME START  --  -- *");		
 		handleChangeTurn(board, turn);
 	}	
@@ -792,7 +792,7 @@ public abstract class SwingView extends JFrame implements GameObserver{
 			break;
 		default:
 			this.addMessageToTextArea(" Something is weird here.... ");
-			break;
+			break;		
 			
 		}
 		

@@ -40,7 +40,7 @@ public class ConnectNFactoryExt extends ConnectNFactory {
 
 	@Override
 	public void createSwingView(Observable<GameObserver> game, Controller ctrl, Piece viewPiece, Player randPlayer, Player aiPlayer) {
-		
+	
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run() {

@@ -18,12 +18,12 @@ public abstract class RectBoardSwingView extends SwingView{
 	private static final long serialVersionUID = 1L;
 	
 	/**
-	 * 
-	 * @param game
-	 * @param c
-	 * @param localPiece
-	 * @param randPlayer
-	 * @param aiPlayer
+	 * Metodo constructor con parametros
+	 * @param game observable del juego
+	 * @param c controlador del juego
+	 * @param localPiece piezas del jugador al inicio
+	 * @param randPlayer jugador random
+	 * @param aiPlayer jugador IA
 	 */
 	public RectBoardSwingView(Observable<GameObserver> game, Controller c, Piece localPiece, Player randPlayer, Player aiPlayer) {
 		super(game, c, localPiece, randPlayer, aiPlayer);
@@ -32,8 +32,7 @@ public abstract class RectBoardSwingView extends SwingView{
 	@SuppressWarnings("serial")
 	@Override
 	protected void initBoardGui(Controller ctrl, Observable<GameObserver> game) {
-		
-		//this.boardComponent = new FiniteRectBoardComponent(ctrl, game, this.getPieceColors(), this.getBoard());
+				
 		boardComponent = new RectBoardComponent(game, board){
 
 		/**
@@ -53,7 +52,7 @@ public abstract class RectBoardSwingView extends SwingView{
 			Tipes PieceTipe = null;
 			if(getPieces().contains(piece))
 				PieceTipe = Tipes.PIECE;
-			else if(piece != null && piece.getId().equals("+"))
+			else if(piece != null && piece.getId().equals("*"))
 				PieceTipe = Tipes.OBSTACLE;
 			else
 				PieceTipe = Tipes.CELL;

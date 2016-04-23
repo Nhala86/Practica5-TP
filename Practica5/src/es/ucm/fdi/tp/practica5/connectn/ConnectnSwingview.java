@@ -5,7 +5,9 @@ import es.ucm.fdi.tp.basecode.bgame.control.Player;
 import es.ucm.fdi.tp.basecode.bgame.model.GameObserver;
 import es.ucm.fdi.tp.basecode.bgame.model.Observable;
 import es.ucm.fdi.tp.basecode.bgame.model.Piece;
+import es.ucm.fdi.tp.practica5.ataxx.AtaxxSwingPlayer;
 import es.ucm.fdi.tp.practica5.view.RectBoardSwingView;
+import es.ucm.fdi.tp.practica5.view.sound.MakeSound;
 
 public class ConnectnSwingview extends RectBoardSwingView {
 
@@ -18,6 +20,7 @@ public class ConnectnSwingview extends RectBoardSwingView {
 	 * Parametro de jugador de la SwingPlayer
 	 */
 	private ConnectnSwingPlayer player;
+	private boolean secondClick;
 
 	/**
 	 * Metodo constructor al que se le pasan los parametos de juego, controlador, piezas y jugadores
@@ -29,14 +32,21 @@ public class ConnectnSwingview extends RectBoardSwingView {
 	 */
 	public ConnectnSwingview(Observable<GameObserver> game, Controller c, Piece localPiece, Player randPlayer, Player aiPlayer) {
 		super(game, c, localPiece, randPlayer, aiPlayer);
-		
+		MakeSound.RunPlaySound("sound/ataxxopen.wav");
+		this.player = new ConnectnSwingPlayer();
+		this.secondClick = false;
 	}
 	
 	@Override
 	protected void handelMouseClick(int row, int col, int clickcounter, int mouseButton) {
 		if(this.inPlay && mouseButton == 1){
-			player.setMoveValue(row, col);
+			player.setMoveValue(row, col);			
 			this.caseMakeManualMove(player);
+			this.secondClick = true;
+		}
+		else{
+			this.secondClick = false;	
+			
 		}
 		
 	}
