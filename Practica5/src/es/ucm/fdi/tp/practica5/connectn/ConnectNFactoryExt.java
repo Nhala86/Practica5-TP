@@ -9,7 +9,6 @@ import es.ucm.fdi.tp.basecode.bgame.model.Observable;
 import es.ucm.fdi.tp.basecode.bgame.model.Piece;
 import es.ucm.fdi.tp.basecode.bgame.views.GenericConsoleView;
 import es.ucm.fdi.tp.basecode.connectn.ConnectNFactory;
-import es.ucm.fdi.tp.practica5.ttt.TicTacToeSwingView;
 
 public class ConnectNFactoryExt extends ConnectNFactory {
 	

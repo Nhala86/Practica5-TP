@@ -9,7 +9,6 @@ import es.ucm.fdi.tp.basecode.bgame.model.Observable;
 import es.ucm.fdi.tp.basecode.bgame.model.Piece;
 import es.ucm.fdi.tp.basecode.bgame.views.GenericConsoleView;
 import es.ucm.fdi.tp.basecode.ttt.TicTacToeFactory;
-import es.ucm.fdi.tp.practica5.attt.AdvancedTTTSwingView;
 
 public class TicTacToeFactoryExt extends TicTacToeFactory {
 

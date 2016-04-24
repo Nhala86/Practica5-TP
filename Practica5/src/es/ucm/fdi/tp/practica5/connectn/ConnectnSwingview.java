@@ -5,7 +5,6 @@ import es.ucm.fdi.tp.basecode.bgame.control.Player;
 import es.ucm.fdi.tp.basecode.bgame.model.GameObserver;
 import es.ucm.fdi.tp.basecode.bgame.model.Observable;
 import es.ucm.fdi.tp.basecode.bgame.model.Piece;
-import es.ucm.fdi.tp.practica5.ataxx.AtaxxSwingPlayer;
 import es.ucm.fdi.tp.practica5.view.RectBoardSwingView;
 import es.ucm.fdi.tp.practica5.view.sound.MakeSound;
 
@@ -20,6 +19,11 @@ public class ConnectnSwingview extends RectBoardSwingView {
 	 * Parametro de jugador de la SwingPlayer
 	 */
 	private ConnectnSwingPlayer player;
+	
+	/**
+	 * Parametro boleano del secondClick
+	 */
+	@SuppressWarnings("unused")
 	private boolean secondClick;
 
 	/**

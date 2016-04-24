@@ -9,6 +9,8 @@ import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -249,8 +251,53 @@ public abstract class SwingView extends JFrame implements GameObserver{
 	private void initGUI() {
 
 		this.setLayout(new BorderLayout(5, 5));	
-		createPanels();		
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		createPanels();	
+		
+		this.addWindowListener(new WindowListener() {
+
+			@Override
+			public void windowActivated(WindowEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void windowClosed(WindowEvent e) {
+				
+			}
+
+			@Override
+			public void windowClosing(WindowEvent e) {
+				quit();
+				
+			}
+
+			@Override
+			public void windowDeactivated(WindowEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void windowDeiconified(WindowEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void windowIconified(WindowEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void windowOpened(WindowEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+		});
+		this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		this.setMinimumSize(new Dimension(800,600));
 		this.setVisible(true);
 		
@@ -606,6 +653,27 @@ public abstract class SwingView extends JFrame implements GameObserver{
 		this.ControllerPanel.add(this.exitPanel);		
 	}
 	
+	/**
+	 * Salir de la aplicacion.
+	 */
+	final protected void quit() {
+		
+		int n = JOptionPane.showOptionDialog(new JFrame(), "Are sure you want to quit?", "Quit",
+				JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, null, null);
+
+		if (n == 0) {
+			try {
+				this.controller.stop();
+			} catch (GameError _e) {
+
+			}
+			setVisible(false);
+			dispose();
+			System.exit(0);
+			
+		}		
+	}
+	
 //--------------------------METODOS DEL MOVIMIENTO AUTOMATICO-------------------------------//	
 	
 	/**
@@ -666,7 +734,6 @@ public abstract class SwingView extends JFrame implements GameObserver{
 		});
 		this.setEnabled(true);
 	}	
-
 
 //------------------------------EVENTOS DEL OBSERVADOR-------------------------------//		
 	@Override
@@ -753,16 +820,16 @@ public abstract class SwingView extends JFrame implements GameObserver{
 				}
 		}
 		
-		else{	//MULTIVISTA
+		else{ //MULTIVISTA			
 			if(this.playersModes.get(this.localPiece) == null){
-				for(Piece localPiece : pieces)
-				this.playersModes.put(localPiece, PlayerMode.MANUAL);
+				for(Piece localPiece : pieces){
+					this.playersModes.put(localPiece, PlayerMode.MANUAL);					
+				}
 				pieceModeCombo.addItem(localPiece);
-			}
-			
+			}			
 		}	
 		this.gameMessages.setText("");
-		this.addMessageToTextArea(" --  --   GAME START  --  -- *");		
+		this.addMessageToTextArea("* --  --   GAME START  --  -- *");		
 		handleChangeTurn(board, turn);
 	}	
 	
@@ -795,8 +862,6 @@ public abstract class SwingView extends JFrame implements GameObserver{
 			break;		
 			
 		}
-		
-		this.setEnabled(false);
 		
 		int n = JOptionPane.showOptionDialog(new JFrame(), "Want another play?", "New Game",
 				JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, null, null);

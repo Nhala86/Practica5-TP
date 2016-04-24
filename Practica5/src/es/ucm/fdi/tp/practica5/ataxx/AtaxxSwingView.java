@@ -86,20 +86,9 @@ public class AtaxxSwingView extends RectBoardSwingView {
 			this.secondClick = false;
 			
 			this.player.setMoveValue(this.originRow, this.originCol, this.destinyRow, this.destinyCol);
+			if(mouseButton == 1)
 			this.caseMakeManualMove(this.player);
-		}
-		/*if(this.inPlay && mouseButton == 1){
-			this.originRow = row;
-			this.originCol = col;			
-			this.secondClick = true;
-		}
-		else{
-			this.destinyRow = row;
-			this.destinyCol = col;
-			this.secondClick = false;	
-			player.setMoveValue(this.originRow, this.originCol, this.destinyRow, this.destinyCol);			
-			this.caseMakeManualMove(player);
-		}*/
+		}		
 	}
 
 }
