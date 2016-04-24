@@ -54,7 +54,7 @@ public class AdvancedTTTSwingView extends RectBoardSwingView {
 
 	public AdvancedTTTSwingView(Observable<GameObserver> game, Controller c, Piece localPiece, Player randPlayer, Player aiPlayer) {
 		super(game, c, localPiece, randPlayer, aiPlayer);
-		MakeSound.RunPlaySound("sound/atttopen.wav");
+		MakeSound.RunPlaySound("sound/atttopen.wav"); // Hilo musical al comienzo de cada juego
 		this.player = new AdvancedTTTSwingPlayer();
 		this.secondClick = false;
 	}
@@ -73,6 +73,7 @@ public class AdvancedTTTSwingView extends RectBoardSwingView {
 			this.secondClick = false;
 			
 			this.player.setMoveValue(this.originRow, this.originCol, this.destinyRow, this.destinyCol);
+			if(mouseButton == 1)
 			this.caseMakeManualMove(this.player);
 		}
 	}

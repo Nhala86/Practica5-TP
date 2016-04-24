@@ -6,6 +6,7 @@ import es.ucm.fdi.tp.basecode.bgame.model.GameObserver;
 import es.ucm.fdi.tp.basecode.bgame.model.Observable;
 import es.ucm.fdi.tp.basecode.bgame.model.Piece;
 import es.ucm.fdi.tp.practica5.view.RectBoardSwingView;
+import es.ucm.fdi.tp.practica5.view.sound.MakeSound;
 
 public class TicTacToeSwingView extends RectBoardSwingView {
 
@@ -27,9 +28,9 @@ public class TicTacToeSwingView extends RectBoardSwingView {
 	 * @param randPlayer parametro de jugador random
 	 * @param aiPlayer parametro de jugador IA
 	 */
-	public TicTacToeSwingView(Observable<GameObserver> game, Controller c, Piece localPiece, Player randPlayer,
-			Player aiPlayer) {
+	public TicTacToeSwingView(Observable<GameObserver> game, Controller c, Piece localPiece, Player randPlayer, Player aiPlayer) {
 		super(game, c, localPiece, randPlayer, aiPlayer);
+		MakeSound.RunPlaySound("sound/tttopen.wav"); // Hilo musical al comienzo de cada juego
 		player = new TicTacToeSwingPlayer();
 	}
 

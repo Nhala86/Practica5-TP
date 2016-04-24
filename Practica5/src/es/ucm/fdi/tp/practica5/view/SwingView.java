@@ -53,8 +53,8 @@ public abstract class SwingView extends JFrame implements GameObserver{
 
 //------------------------------MODOS DE JUEGO-------------------------------//		
 	/**
-	 * <p>Player modes (manual, random, etc.)</p>
-	 * <p> Modos de juego.</p>
+	 * Player modes (manual, random, etc.)
+	 * Modos de juego.
 	 */
 	public enum PlayerMode {
 		MANUAL("Manual"), RANDOM("Random"), AI("Automatics");
@@ -73,15 +73,13 @@ public abstract class SwingView extends JFrame implements GameObserver{
 	
 	/**
 	 * A map that associates pieces with players modes (manual, random, etc.).
-	 * 
-	 * <p>
 	 * Map que asocia fichas con modos de jugadores (manual, random, etc.).
 	 */
 	private Map<Piece,PlayerMode> playersModes;
 	
 	/**
-	 * <p>Used for recieve the reference of game modes for the list of pieces</p>
-	 * @return the players modes Map<Piece,Player> of this object
+	 * Used for recieve the reference of game modes for the list of pieces
+	 * @return the players modes Map of this object
 	 */
 	public Map<Piece,PlayerMode> getPlayerModes(){
 		return this.playersModes;
@@ -90,8 +88,6 @@ public abstract class SwingView extends JFrame implements GameObserver{
 //------------------------------COLORES DE PIEZAS-------------------------------//		
 	/**
 	 * A map that associates pieces Colors).
-	 * 
-	 * <p>
 	 * Map que asocia fichas con colores.
 	 */
 	private Map<Piece,Color> pieceColors;
@@ -131,7 +127,7 @@ public abstract class SwingView extends JFrame implements GameObserver{
 	private List<Piece>pieces;
 	
 	/**
-	 * <b>getPieces<b>
+	 * getPieces
 	 * @return list of piece for this game
 	 */
 	final protected List<Piece> getPieces() {
@@ -144,7 +140,7 @@ public abstract class SwingView extends JFrame implements GameObserver{
 	 */
 	private Piece turn;
 	/**
-	 * <b>getTurn<b>
+	 * getTurn
 	 * @return the turn for this game
 	 */
 	final protected Piece getTurn() {
@@ -157,7 +153,7 @@ public abstract class SwingView extends JFrame implements GameObserver{
 	 */
 	protected Board board;
 	/**
-	 * <b>getBoard<b>
+	 * getBoard
 	 * @return the model board for this game
 	 */
 	final protected Board getBoard() {
@@ -166,8 +162,8 @@ public abstract class SwingView extends JFrame implements GameObserver{
 	
 //------------------------------COMPONENTE DE TABLERO-------------------------------//	
 	/**
-	 * <b>ControllerPanel</b>
-	 * <p>Panel aglomerador de componentes</p>
+	 * ControllerPanel
+	 * Panel aglomerador de componentes
 	 */
 	private JPanel boardPanel;
 	/**
@@ -175,7 +171,7 @@ public abstract class SwingView extends JFrame implements GameObserver{
 	 */
 	protected RectBoardComponent boardComponent;
 	/**
-	 * <b>setBoardArea</b>
+	 * setBoardArea
 	 * @param component to add to the boardPanel;
 	 */
 	final protected void setBoardArea(JComponent component) {
@@ -214,10 +210,10 @@ public abstract class SwingView extends JFrame implements GameObserver{
 	protected boolean newGame, inPlay, inMove;
 		
 	/**
-	 * <b>SwingView</b>
-	 * <p> Constructor for the abstract father SwingView</p>
-	 * <p> Constructor de la clase padre abstracta SwingView</p>
-	 * @param game
+	 * SwingView
+	 * Constructor for the abstract father SwingView
+	 * Constructor de la clase padre abstracta SwingView
+	 * @param game observable del juego
 	 * @param controller it a reference to call the methods of the controller of the MVC
 	 * @param localPiece its an indicator of the owner for this SwingView
 	 * @param randPlayer a builded random player for random moves
@@ -244,9 +240,9 @@ public abstract class SwingView extends JFrame implements GameObserver{
 	}
 	
 	/**
-	 * <b>initGUI</b>
-	 * <p> Creation procedure for the main frame</p>
-	 * <p> Procedimiento de maquetación del frame principal</p> 
+	 * initGUI
+	 * Creation procedure for the main frame
+	 * Procedimiento de maquetación del frame principal
 	 */
 	private void initGUI() {
 
@@ -306,15 +302,15 @@ public abstract class SwingView extends JFrame implements GameObserver{
 //----------------------------------PANEL DE CONTROLADOR------------------------------------//
 	
 	/**
-	 * <b>ControllerPanel</b>
-	 * <p>Panel aglomerador de componentes</p>
+	 * ControllerPanel
+	 * Panel aglomerador de componentes
 	 */
 	private JPanel ControllerPanel;
 	
 	/**
-	 * <b>gameMessagesPanel</b>
-	 * <p> Creation procedure accumulator panel components</p>
-	 * <p> Procedimiento de creación del panel aglomerador de componentes</p> 
+	 * gameMessagesPanel
+	 * Creation procedure accumulator panel components
+	 * Procedimiento de creación del panel aglomerador de componentes 
 	 */
 	final private void createPanels(){
 		
@@ -333,9 +329,9 @@ public abstract class SwingView extends JFrame implements GameObserver{
 	}
 
 	/**
-	 * <b>gameMessagesPanel</b>
-	 * <p> Creation procedure accumulator panel components</p>
-	 * <p> Procedimiento de creación de un panel etiquetado y centrado</p> 
+	 * gameMessagesPanel
+	 * Creation procedure accumulator panel components
+	 * Procedimiento de creación de un panel etiquetado y centrado
 	 * @param label String whit the label for the titled border
 	 * @param color background configuration
 	 * @return a instanced titled JPanel 
@@ -351,21 +347,21 @@ public abstract class SwingView extends JFrame implements GameObserver{
 //----------------------------------COMPONENTE DE TEXTO------------------------------------//
 	
 	/**
-	 * <b>gameMessagesPanel</b>
-	 * <p>Panel contenedor del componente de mesajes del juego </p>
+	 * gameMessagesPanel
+	 * Panel contenedor del componente de mesajes del juego 
 	 */
 	private JPanel gameMessagesPanel;
 	
 	/**
-	 * <b>gameMessages</b>
-	 * <p>Area de texto de salida de los mesajes del juego </p>
+	 * gameMessages
+	 * Area de texto de salida de los mesajes del juego 
 	 */
 	private JTextArea gameMessages;
 	
 	/**
-	 * <b>gameMessagesPanel</b>
-	 * <p> Component creation process for the status game messages </p>
-	 * <p> Procedimiento de creación del componente de mensajes de estado del juego</p> 
+	 * gameMessagesPanel
+	 * Component creation process for the status game messages 
+	 * Procedimiento de creación del componente de mensajes de estado del juego
 	 */
 	private void gameMessagesComponent() {
 		this.gameMessagesPanel = createPanelLabeled("Player Information", Color.LIGHT_GRAY);
@@ -378,9 +374,9 @@ public abstract class SwingView extends JFrame implements GameObserver{
 	
 //--------------------------METODOS DEL COMPONENTE DE TEXTO-------------------------------//
 	/**
-	 * <b>gameMessagesPanel</b>
-	 * <p> Component creation process for the status game messages </p>
-	 * <p> Procedimiento de insercion de mensajes en el area de texto</p> 
+	 * gameMessagesPanel
+	 * Component creation process for the status game messages 
+	 * Procedimiento de insercion de mensajes en el area de texto
 	 * @param message to show in the tex area
 	 */
 	final protected void addMessageToTextArea(String message) {
@@ -390,21 +386,21 @@ public abstract class SwingView extends JFrame implements GameObserver{
 //-------------------------COMPONENTE DE INFORMACION DE JUGADORES--------------------------//	
 	
 	/**
-	 * <b>playerInformationPanel</b>
-	 * <p>Panel contenedor del tablon de información de jugadores </p>
+	 * playerInformationPanel
+	 * Panel contenedor del tablon de información de jugadores 
 	 */
 	private JPanel playerInformationPanel;
 	
 	/**
-	 * <b>infoTable</b>
-	 * <p>Tabla contenedora de la informacion de los jugadores</p>
+	 * infoTable
+	 * Tabla contenedora de la informacion de los jugadores
 	 */
 	private PlayerInformationTable infoTable;
 	
 	/**
-	 * <b>playerInformationComponent</b>
-	 * <p> Component creation process for the payers information </p>
-	 * <p> Procedimiento de creación del componente de informacion de jugadores</p> 
+	 * playerInformationComponent
+	 * Component creation process for the payers information 
+	 * Procedimiento de creación del componente de informacion de jugadores
 	 */	
 	private void playerInformationComponent(){
 		this.playerInformationPanel = createPanelLabeled("Player Information", Color.LIGHT_GRAY);		
@@ -428,21 +424,21 @@ public abstract class SwingView extends JFrame implements GameObserver{
 	
 //-------------------------COMPONENTE DE CAMBIO DE COLORES-------------------------------//	
 	/**
-	 * <b>selectColorPanel</b>
-	 * <p>Panel contenedor del desplegable y boton de cambio de color </p>
+	 * selectColorPanel
+	 * Panel contenedor del desplegable y boton de cambio de color 
 	 */
 	private JPanel selectColorPanel;
 	
 	/**
-	 * <b>pieceColorCombo</b>
-	 * <p>desplegable con el contenido de piezas del juego para el cambio de colores</p>
+	 * pieceColorCombo
+	 * desplegable con el contenido de piezas del juego para el cambio de colores
 	 */
 	private JComboBox<Piece> pieceColorCombo;
 	
 	/**
-	 * <b>selectColorComponent</b>
-	 * <p> Component creation process for the colors change </p>
-	 * <p> Procedimiento de creación del componente de cambio de colores</p> 
+	 * selectColorComponent
+	 * Component creation process for the colors change 
+	 * Procedimiento de creación del componente de cambio de colores
 	 */
 	private void selectColorComponent (){
 		this.selectColorPanel = createPanelLabeled("Color Selection", Color.LIGHT_GRAY);
@@ -474,27 +470,27 @@ public abstract class SwingView extends JFrame implements GameObserver{
 //-------------------------COMPONENTE DE CAMBIO DE MODOS-------------------------------//	
 	
 	/**
-	 * <b>selectModePlayerPanel</b>
-	 * <p>Panel contenedor del los desplegables y boton de cambio de modos </p>
+	 * selectModePlayerPanel
+	 * Panel contenedor del los desplegables y boton de cambio de modos 
 	 */
 	private JPanel selectModePlayerPanel;
 		
 	/**
-	 * <b>modeCombo</b>
-	 * <p>desplegable con el contenido de piezas del juego para el cambio de modos</p>
+	 * modeCombo
+	 * desplegable con el contenido de piezas del juego para el cambio de modos
 	 */
 	private JComboBox<Piece> pieceModeCombo;
 	
 	/**
-	 * <b>modeCombo</b>
-	 * <p>desplegable con el contenido de tipos de modos para los jugadores</p>
+	 * modeCombo
+	 * desplegable con el contenido de tipos de modos para los jugadores
 	 */
 	private JComboBox<PlayerMode> modeCombo;
 	
 	/**
-	 * <b>selectModePlayerComponent</b>
-	 * <p> Component creation process for the modes change </p>
-	 * <p> Procedimiento de creación del componente de cambio de modos</p> 
+	 * selectModePlayerComponent
+	 * Component creation process for the modes change 
+	 * Procedimiento de creación del componente de cambio de modos 
 	 */
 	@SuppressWarnings("serial")
 	private void selectModePlayerComponent() {
@@ -547,16 +543,16 @@ public abstract class SwingView extends JFrame implements GameObserver{
 //--------------------------COMPONENTE DE MOVIMIENTO AUTOMATICO-------------------------------//	
 	
 	/**
-	 * <b>automaticMovePanel</b>
-	 * <p>Panel contenedor del los botones para la ejecucion de movimientos automaticos</p>
-	 * <p>container panel buttons for the execution of automatic movements<p>
+	 * automaticMovePanel
+	 * Panel contenedor del los botones para la ejecucion de movimientos automaticos
+	 * container panel buttons for the execution of automatic movements
 	 */
 	private JPanel automaticMovePanel;
 	
 	/**
-	 * <b>automaticMoveComponent</b>
-	 * <p> Component creation process for the automatic movements </p>
-	 * <p> Procedimiento de creación del componente de movimientos automaticos</p> 
+	 * automaticMoveComponent
+	 * Component creation process for the automatic movements 
+	 * Procedimiento de creación del componente de movimientos automaticos 
 	 */
 	private void automaticMoveComponent(){		
 		
@@ -589,16 +585,16 @@ public abstract class SwingView extends JFrame implements GameObserver{
 //--------------------------COMPONENTE DE MOVIMIENTO AUTOMATICO-------------------------------//
 	
 	/**
-	 * <b>exitPanel</b>
-	 * <p>Panel contenedor del los botones para salir o reiniciar el juego</p>
-	 * <p>container panel buttons for exit or restart the game<p>
+	 * exitPanel
+	 * Panel contenedor del los botones para salir o reiniciar el juego
+	 * container panel buttons for exit or restart the game
 	 */
 	private JPanel exitPanel;
 
 	/**
-	 * <b>exitComponent</b>
-	 * <p> Component creation process for the automatic movements </p>
-	 * <p> Procedimiento de creación del componente de movimientos automaticos</p> 
+	 * exitComponent
+	 * Component creation process for the automatic movements 
+	 * Procedimiento de creación del componente de movimientos automaticos 
 	 */
 	private void exitComponent(){		
 		this.exitPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
@@ -677,9 +673,9 @@ public abstract class SwingView extends JFrame implements GameObserver{
 //--------------------------METODOS DEL MOVIMIENTO AUTOMATICO-------------------------------//	
 	
 	/**
-	 * <b>decideMakeManualMove</b>
-	 * <p> Execution of a procedure manual movement</p>
-	 * <p> Procedimiento de ejecucion de un movimiento manual</p> 
+	 * decideMakeManualMove
+	 * Execution of a procedure manual movement
+	 * Procedimiento de ejecucion de un movimiento manual 
 	 */
 	final protected void caseMakeManualMove(Player manualPlayer) {
 		if(this.inMove || !this.inPlay)
@@ -692,9 +688,9 @@ public abstract class SwingView extends JFrame implements GameObserver{
 	}
 	
 	/**
-	 * <b>caseMakeAutomaticMove</b>
-	 * <p> Procedure for execution of an automatic movement </p>
-	 * <p> Procedimiento de ejecucion de un movimiento automatico</p> 
+	 * caseMakeAutomaticMove
+	 * Procedure for execution of an automatic movement
+	 * Procedimiento de ejecucion de un movimiento automatico 
 	 */
 	final protected void caseMakeAutomaticMove() {
 		if(this.inMove || !this.inPlay)
@@ -716,9 +712,9 @@ public abstract class SwingView extends JFrame implements GameObserver{
 	}
 	
 	/**
-	 * <b>decideMakeAutomaticMove</b>
-	 * <p> Procedure for execution of an movement </p>
-	 * <p> Procedimiento de ejecucion de un movimiento</p> 
+	 * decideMakeAutomaticMove
+	 * Procedure for execution of an movement 
+	 * Procedimiento de ejecucion de un movimiento
 	 */
 	private void executeControllerMove(final Player player){
 		this.setEnabled(false);
@@ -985,9 +981,9 @@ public abstract class SwingView extends JFrame implements GameObserver{
 		}
 		
 		/**
-		 * <b>refresh</b>
-		 * <p>Procedure to refresh the data in the table according to the current state of the model</p>
-		 * <p>Procedimiento para refrescar los datos de la tabla segun el actual estado del modelo</p>
+		 * refresh
+		 * Procedure to refresh the data in the table according to the current state of the model
+		 * Procedimiento para refrescar los datos de la tabla segun el actual estado del modelo
 		 */
 		public void refresh(){
 			this.fireTableDataChanged();

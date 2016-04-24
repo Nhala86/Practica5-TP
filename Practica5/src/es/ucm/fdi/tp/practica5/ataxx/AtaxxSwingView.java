@@ -67,7 +67,7 @@ public class AtaxxSwingView extends RectBoardSwingView {
 	 */
 	public AtaxxSwingView(Observable<GameObserver> game, Controller c, Piece localPiece, Player randPlayer, Player aiPlayer) {
 		super(game, c, localPiece, randPlayer, aiPlayer);
-		MakeSound.RunPlaySound("sound/ataxxopen.wav");
+		MakeSound.RunPlaySound("sound/ataxxopen.wav"); // Hilo musical al comienzo de cada juego
 		this.player = new AtaxxSwingPlayer();
 		this.secondClick = false;
 	}
